@@ -18,10 +18,11 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Next Sanity Test</title>
+        <title>Guns CMS</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <h1>Guns List</h1>
         <GunsPage guns={props.guns} />
       </main>
     </div>
