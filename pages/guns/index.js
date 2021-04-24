@@ -23,6 +23,7 @@ export default function Home(props) {
       </Head>
       <main className={styles.main}>
         <h1>Guns List</h1>
+        <span style={{ fontStyle: 'italic' }}>Preivew MODE!!</span>
         <GunsPage guns={props.guns} />
       </main>
     </div>
