@@ -8,6 +8,7 @@ const TagDiv = styled.button`
   border-radius: 4px;
   background-color: rgb(240, 240, 240);
   margin-right: 10px;
+  margin-top: 10px;
   padding: 5px;
   cursor: pointer;
 

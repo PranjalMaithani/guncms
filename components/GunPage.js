@@ -10,16 +10,23 @@ const PageDiv = styled.div`
   background-color: white;
   padding: 24px 36px;
   box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.05);
+  max-width: 90vw;
 `;
 
 const FullImage = styled.img`
   object-fit: contain;
   border-radius: 2px;
+  width: 100%;
+  max-width: 60vw;
+  height: auto;
 `;
 
 const CaliberImage = styled.img`
   object-fit: contain;
   border-radius: 4px;
+
+  width: 100%;
+  height: auto;
 `;
 
 const DetailsDiv = styled.div``;
