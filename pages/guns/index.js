@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-import { getClient } from '../../utils/sanity';
+import { getClient, usePreviewSubscription } from '../../utils/sanity';
 
 import GunsPage from '../../components/GunsPage';
 
@@ -15,6 +15,11 @@ const allDataQuery = `*[_type == "gun" && defined(slug)]{
 }`;
 
 export default function Home(props) {
+  const { data: guns } = usePreviewSubscription(allDataQuery, {
+    initialData: props.guns,
+    enabled: props.preview,
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,7 +28,7 @@ export default function Home(props) {
       </Head>
       <main className={styles.main}>
         <h1>Guns List</h1>
-        <GunsPage guns={props.guns} />
+        <GunsPage guns={guns} />
       </main>
     </div>
   );
@@ -35,6 +40,7 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       guns,
+      preview,
     },
   };
 }

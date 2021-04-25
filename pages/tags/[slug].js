@@ -1,31 +1,42 @@
 import slugify from 'slugify';
 
-import { getClient } from '../../utils/sanity';
+import { getClient, usePreviewSubscription } from '../../utils/sanity';
 import { useRouter } from 'next/router';
 import GunsGrid from '../../components/GunsPage';
+import groq from 'groq';
 
-const TagPage = ({ data }) => {
+const query = groq`*[_type == "gun" && $slug in category.slugs]`;
+
+const TagPage = ({ gunData, preview, slug }) => {
   const router = useRouter();
   let title = null;
   if (router && router.query.slug) {
     title = router.query.slug.replace(/-/g, ' ');
   }
 
+  const { data: liveData } = usePreviewSubscription(query, {
+    params: { slug },
+    initialData: gunData,
+    enabled: preview,
+  });
+
   return (
     <>
       {title && <h2>{title}</h2>}
-      <GunsGrid guns={data} />
+      <GunsGrid guns={liveData} />
     </>
   );
 };
 
 export async function getStaticProps({ params, preview = false }) {
-  const data = await getClient(preview).fetch(
-    `*[_type == "gun" && "${params.slug}" in category.slugs]`
-  );
+  const gunData = await getClient(preview).fetch(query, {
+    slug: params.slug,
+  });
   return {
     props: {
-      data,
+      gunData,
+      preview,
+      slug: params.slug,
     },
   };
 }

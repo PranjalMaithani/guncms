@@ -1,17 +1,33 @@
 import GunPage from '../../components/GunPage';
-import { getClient } from '../../utils/sanity';
+import { getClient, usePreviewSubscription } from '../../utils/sanity';
+import { groq } from 'next-sanity';
 
-const Gun = ({ data }) => {
-  return <GunPage gun={data} />;
+const query = groq`*[_type == "gun" && slug.current == $slug][0]{..., country->, caliber->}`;
+
+const Gun = ({ gunData, preview, slug }) => {
+  const { data: liveData } = usePreviewSubscription(query, {
+    params: { slug },
+    initialData: gunData,
+    enabled: preview,
+  });
+
+  if (liveData.loading) {
+    return <p>Loading Gun...</p>;
+  }
+
+  return (
+    <>
+      {preview && <i>Preview mode</i>}
+      <GunPage gun={liveData} />
+    </>
+  );
 };
 
 export async function getStaticProps({ params, preview = false }) {
-  const data = await getClient(preview).fetch(
-    `*[_type == "gun" && slug.current == '${params.slug.toLowerCase()}'][0]{..., country->, caliber->}`
-  );
-
+  const slug = params.slug.toLowerCase();
+  const gunData = await getClient(preview).fetch(query, { slug });
   return {
-    props: { preview, data },
+    props: { preview, gunData, slug: params.slug },
   };
 }
 

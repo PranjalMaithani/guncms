@@ -13,8 +13,7 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "color-picker",
-    "@sanity/production-preview"
+    "color-picker"
   ],
   "env": {
     "development": {
@@ -29,10 +28,6 @@
     {
       "implements": "part:@sanity/base/document-actions/resolver",
       "path": "./schemas/documentActions.js"
-    },
-    {
-      "implements": "part:@sanity/production-preview/resolve-production-url",
-      "path": "./schemas/actions/resolveProductionUrl.js"
     }
   ]
 }
