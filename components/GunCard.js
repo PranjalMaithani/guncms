@@ -16,6 +16,11 @@ const CardDiv = styled.div`
   &:hover {
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   }
+
+  @media (max-width: 765px) {
+    max-width: 80vw;
+    padding: 15px 10px;
+  }
 `;
 
 const CardImage = styled.div`
@@ -23,6 +28,12 @@ const CardImage = styled.div`
   height: 300px;
   background-repeat: no-repeat;
   border-radius: 4px 0 0 4px;
+
+  background-size: contain;
+  @media (max-width: 765px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 
 const CardDetails = styled.div`

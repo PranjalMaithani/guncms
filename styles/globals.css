@@ -26,4 +26,14 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0;
+}
+
+@media (max-width: 765px) {
+  h2,
+  h4,
+  p,
+  button {
+    font-size: 0.8rem;
+  }
 }

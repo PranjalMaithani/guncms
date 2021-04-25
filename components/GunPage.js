@@ -11,6 +11,12 @@ const PageDiv = styled.div`
   padding: 24px 36px;
   box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.05);
   max-width: 90vw;
+
+  @media (max-width: 765px) {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto;
+    place-content: center;
+  }
 `;
 
 const FullImage = styled.img`
@@ -25,6 +31,8 @@ const CaliberImage = styled.img`
   object-fit: contain;
   border-radius: 4px;
 
+  max-width: 40vw;
+  max-height: 20vh;
   width: 100%;
   height: auto;
 `;
