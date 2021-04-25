@@ -7,8 +7,9 @@ const TagDiv = styled.button`
   border-style: none;
   border-radius: 4px;
   background-color: rgb(240, 240, 240);
-  margin: 10px;
+  margin-right: 10px;
   padding: 5px;
+  cursor: pointer;
 
   &:hover {
     background-color: rgb(230, 230, 230);

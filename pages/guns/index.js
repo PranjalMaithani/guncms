@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import styles from '../../styles/Home.module.css';
 import { getClient, usePreviewSubscription } from '../../utils/sanity';
 
 import GunsPage from '../../components/GunsPage';
@@ -21,12 +20,12 @@ export default function Home(props) {
   });
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Guns CMS</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <h1>Guns List</h1>
         <GunsPage guns={guns} />
       </main>

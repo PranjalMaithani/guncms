@@ -3,14 +3,26 @@ import styled from 'styled-components';
 import Tag from './Tag';
 
 const PageDiv = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 30px;
+  border-radius: 4px;
+  background-color: white;
+  padding: 24px 36px;
+  box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.05);
 `;
 
 const FullImage = styled.img`
   object-fit: contain;
+  border-radius: 2px;
 `;
 
-const StatsDiv = styled.div``;
+const CaliberImage = styled.img`
+  object-fit: contain;
+  border-radius: 4px;
+`;
+
+const DetailsDiv = styled.div``;
 
 const GunPage = ({ gun }) => {
   if (!gun) {
@@ -20,8 +32,8 @@ const GunPage = ({ gun }) => {
   return (
     <PageDiv>
       <FullImage src={`${urlFor(image).auto('format').fit('min').width(1000).url()}`} />
-      <div>
-        {name && <h3>{name}</h3>}
+      <DetailsDiv>
+        {name && <h2>{name}</h2>}
         {category.action.map((type, index) => (
           <Tag name={type} key={index} />
         ))}
@@ -31,11 +43,11 @@ const GunPage = ({ gun }) => {
         </h4>
         <h4>{caliber && caliber.name}</h4>
         {caliber && caliber.image && (
-          <FullImage
+          <CaliberImage
             src={`${urlFor(caliber.image).auto('format').fit('clip').height(200).url()}`}
           />
         )}
-      </div>
+      </DetailsDiv>
     </PageDiv>
   );
 };

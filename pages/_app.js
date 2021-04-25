@@ -7,14 +7,18 @@ function MyApp({ Component, pageProps }) {
   const showBackToHome =
     router.pathname === '/' || router.pathname === '/guns' ? false : true;
   return (
-    <>
+    <main>
       <Component {...pageProps} />
       {showBackToHome && (
         <Link href="/guns">
-          <a style={{ color: 'blue', textDecoration: 'underline' }}>Back to home</a>
+          <a
+            style={{ color: 'rgb(30,30,30)', textDecoration: 'underline', marginTop: 10 }}
+          >
+            Back to home
+          </a>
         </Link>
       )}
-    </>
+    </main>
   );
 }
 

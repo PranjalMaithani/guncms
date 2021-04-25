@@ -6,12 +6,27 @@ import Tag from './Tag';
 
 const CardDiv = styled.div`
   display: flex;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+
+  transition: 0.1s;
+
+  &:hover {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 const CardImage = styled.div`
   width: 300px;
   height: 300px;
   background-repeat: no-repeat;
+  border-radius: 4px 0 0 4px;
+`;
+
+const CardDetails = styled.div`
+  margin-left: 15px;
 `;
 
 const GunCard = ({ gun }) => {
@@ -34,20 +49,22 @@ const GunCard = ({ gun }) => {
           ></CardImage>
         </a>
       </Link>
-      <div>
+      <CardDetails>
         <Link href={productLink}>
           <a>
-            <h3>{name}</h3>
+            <h2>{name}</h2>
           </a>
         </Link>
-        {category.action.map((type, index) => (
-          <Tag name={type} key={index} />
-        ))}
-        {category && category.type && <Tag name={category.type} />}
+
         <h4>
           {country && country.name} {year.slice(0, 4)}
         </h4>
-      </div>
+
+        {category && category.type && <Tag name={category.type} />}
+        {category.action.map((type, index) => (
+          <Tag name={type} key={index} />
+        ))}
+      </CardDetails>
     </CardDiv>
   );
 };
