@@ -1,6 +1,7 @@
 import GunPage from '../../components/GunPage';
 import { getClient, usePreviewSubscription } from '../../utils/sanity';
 import { groq } from 'next-sanity';
+import Error from 'next/error';
 
 const query = groq`*[_type == "gun" && slug.current == $slug][0]{..., country->, caliber->}`;
 
@@ -10,6 +11,10 @@ const Gun = ({ gunData, preview, slug }) => {
     initialData: gunData,
     enabled: preview,
   });
+
+  if (!gunData?.slug) {
+    return <Error statusCode={404} />;
+  }
 
   if (liveData.loading) {
     return <p>Loading Gun...</p>;
@@ -38,7 +43,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: 'blocking',
+    fallback: false,
   };
 }
 
