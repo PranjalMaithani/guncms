@@ -15,3 +15,5 @@ CMS based project using Sanity CMS and NextJS
 ![Tags Page](https://i.imgur.com/3rvuCpe.png)
 
 ![Item Page](https://i.imgur.com/lHapWDA.png)
+
+![CMS Page](https://i.imgur.com/yl6fTKY.png)
