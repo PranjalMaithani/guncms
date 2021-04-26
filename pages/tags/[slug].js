@@ -5,7 +5,15 @@ import { useRouter } from 'next/router';
 import GunsGrid from '../../components/GunsPage';
 import groq from 'groq';
 
-const query = groq`*[_type == "gun" && $slug in category.slugs]`;
+const query = groq`*[_type == "gun" && $slug in category.slugs]{
+  _id, 
+  name, 
+  slug,
+  country->, 
+  image, 
+  year, 
+  category
+}`;
 
 const TagPage = ({ gunData, preview, slug }) => {
   const router = useRouter();

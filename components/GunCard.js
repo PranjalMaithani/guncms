@@ -12,6 +12,7 @@ const CardDiv = styled.div`
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
 
   transition: 0.1s;
+  position: relative;
 
   &:hover {
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
@@ -33,6 +34,16 @@ const CardImage = styled.div`
   @media (max-width: 765px) {
     width: 150px;
     height: 150px;
+  }
+`;
+
+const FlagImage = styled.img`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  @media (max-width: 765px) {
+    width: 40px;
   }
 `;
 
@@ -61,6 +72,11 @@ const GunCard = ({ gun }) => {
         </a>
       </Link>
       <CardDetails>
+        {country && (
+          <FlagImage
+            src={urlFor(country.flag).auto('format').width(60).quality(50).url()}
+          ></FlagImage>
+        )}
         <Link href={productLink}>
           <a>
             <h2>{name}</h2>

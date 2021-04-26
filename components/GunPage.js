@@ -39,16 +39,32 @@ const CaliberImage = styled.img`
 
 const DetailsDiv = styled.div``;
 
+const HeadingDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+`;
+
 const GunPage = ({ gun }) => {
   if (!gun) {
     return <p>Loading Gun...</p>;
   }
   const { name, country, image, year, category, caliber } = gun;
+  const imageUrl = urlFor(image).auto('format').fit('min').width(1000).url();
   return (
     <PageDiv>
-      <FullImage src={`${urlFor(image).auto('format').fit('min').width(1000).url()}`} />
+      <a href={imageUrl} target="_blank" rel="noreferrer noopener">
+        <FullImage src={imageUrl} />
+      </a>
       <DetailsDiv>
-        {name && <h2>{name}</h2>}
+        <HeadingDiv>
+          {name && <h2>{name}</h2>}
+          {country && country && country.flag && (
+            <img
+              src={urlFor(country.flag).auto('format').width(60).quality(50).url()}
+            ></img>
+          )}
+        </HeadingDiv>
+
         {category.action.map((type, index) => (
           <Tag name={type} key={index} />
         ))}

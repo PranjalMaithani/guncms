@@ -30,10 +30,13 @@ main {
 }
 
 @media (max-width: 765px) {
-  h2,
   h4,
   p,
   button {
     font-size: 0.8rem;
+  }
+
+  h2 {
+    font-size: 0.9rem;
   }
 }
