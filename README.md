@@ -10,6 +10,8 @@ CMS based project using Sanity CMS and NextJS
 
 * Low size images are fetched for the main page and tags page. The full size image being only served on the individual item page.
 
+* Fully responsive to screen size
+
 ![Main Page](https://i.imgur.com/V9UtQbz.png)
 
 ![Tags Page](https://i.imgur.com/3rvuCpe.png)
